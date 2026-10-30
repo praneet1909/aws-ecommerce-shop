@@ -1,0 +1,4 @@
+{% extends "base.html" %}{% block content %}<div class="card pad auth"><h2>Create your account</h2><p class="muted">It only takes a minute.</p>
+<form method="post"><label>Full name</label><input name="name" required><label>Email</label><input type="email" name="email" required>
+<label>Password (6+ characters)</label><input type="password" name="password" minlength="6" required><button class="btn-block">Register</button></form>
+<p class="muted" style="text-align:center">Already registered? <a href="{{ url_for('login') }}" style="color:var(--blue)">Login</a></p></div>{% endblock %}

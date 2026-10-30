@@ -1,0 +1,7 @@
+{% extends "base.html" %}{% block content %}<div class="card pad auth" style="max-width:560px"><h2>{{ 'Edit product' if p else 'New product' }}</h2>
+<form method="post" enctype="multipart/form-data"><label>Name</label><input name="name" value="{{ p.name if p }}" required>
+<label>Description</label><textarea name="description" rows="3">{{ p.description if p }}</textarea>
+<label>Category</label><input name="category" value="{{ p.category if p else '' }}" placeholder="Electronics, Fashion, Home...">
+<label>Price (INR)</label><input name="price" type="number" step="0.01" min="0" value="{{ p.price if p }}" required>
+<label>Image (uploaded to S3){% if p %} - leave empty to keep current{% endif %}</label>{% if p %}<img class="thumb" style="width:90px;height:90px;display:block;margin-top:6px" src="{{ image_url(p.image_key) }}" alt="">{% endif %}
+<input type="file" name="image" accept="image/*"><button class="btn-block">Save product</button></form></div>{% endblock %}

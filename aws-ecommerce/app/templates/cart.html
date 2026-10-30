@@ -1,0 +1,12 @@
+{% extends "base.html" %}{% block content %}<h2 class="sec">Shopping cart</h2>
+{% if items %}<div class="cartgrid"><div class="card">{% for i in items %}<div class="item"><img src="{{ image_url(i.product.image_key) }}" alt="">
+<div class="grow"><a href="{{ url_for('product', pid=i.product.id) }}"><b>{{ i.product.name }}</b></a><div class="muted">{{ i.product.price|money }} each</div>
+<form class="inline" method="post" action="{{ url_for('cart_remove', pid=i.product.id) }}"><button class="btn-red btn-sm" style="margin-top:8px">Remove</button></form></div>
+<div class="stepper"><form class="inline" method="post" action="{{ url_for('cart_update', pid=i.product.id) }}"><input type="hidden" name="action" value="dec"><button>-</button></form><span>{{ i.qty }}</span>
+<form class="inline" method="post" action="{{ url_for('cart_update', pid=i.product.id) }}"><input type="hidden" name="action" value="inc"><button>+</button></form></div>
+<b style="min-width:90px;text-align:right">{{ i.subtotal|money }}</b></div>{% endfor %}</div>
+<div class="card pad sum"><h3 style="margin-top:0">Order summary</h3><div><span>Subtotal</span><span>{{ total|money }}</span></div><div><span>Delivery</span><span style="color:var(--green)">Free</span></div>
+<div class="tot"><span>Total</span><span>{{ total|money }}</span></div>
+{% if g.user %}<form method="post" action="{{ url_for('checkout') }}"><button class="btn-block">Place order</button></form>
+{% else %}<a class="btn btn-block" href="{{ url_for('login', next='/cart') }}">Login to checkout</a>{% endif %}</div></div>
+{% else %}<div class="card empty"><h2>Your cart is empty</h2><p class="muted">Add something you like.</p><a class="btn" href="{{ url_for('index') }}">Continue shopping</a></div>{% endif %}{% endblock %}

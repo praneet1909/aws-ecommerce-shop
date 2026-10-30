@@ -1,0 +1,9 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AWS Shop</title><link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"></head><body>
+<nav class="nav"><div class="nav-in"><a class="logo" href="{{ url_for('index') }}">AWS<b>Shop</b></a>
+<form class="search" action="{{ url_for('index') }}"><input name="q" placeholder="Search products" value="{{ request.args.get('q','') }}"><button>Search</button></form>
+<div class="links"><a href="{{ url_for('cart') }}">Cart{% if cart_count %}<span class="badge">{{ cart_count }}</span>{% endif %}</a>
+{% if g.user %}<a href="{{ url_for('orders') }}">Orders</a>{% if g.user.is_admin %}<a href="{{ url_for('admin_products') }}">Manage</a>{% endif %}
+<a href="{{ url_for('logout') }}">Logout ({{ g.user.name }})</a>{% else %}<a href="{{ url_for('login') }}">Login</a><a href="{{ url_for('register') }}">Register</a>{% endif %}</div></div></nav>
+<main class="wrap">{% for cat, m in get_flashed_messages(with_categories=true) %}<div class="flash {{ cat }}">{{ m }}</div>{% endfor %}{% block content %}{% endblock %}</main>
+<footer class="foot"><b>AWS Shop</b> &middot; Running on EC2, RDS, S3 and a load balancer &middot; &copy; 2026</footer></body></html>

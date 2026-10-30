@@ -1,0 +1,6 @@
+{% extends "base.html" %}{% block content %}
+<div class="crumb"><a href="{{ url_for('index') }}">Home</a> / <a href="{{ url_for('index', cat=p.category) }}">{{ p.category }}</a> / {{ p.name }}</div>
+<div class="detail"><div class="pimg"><img src="{{ image_url(p.image_key) }}" alt="{{ p.name }}"></div>
+<div><div class="cat">{{ p.category }}</div><h1>{{ p.name }}</h1><p class="muted" style="font-size:16px">{{ p.description }}</p><div class="price">{{ p.price|money }}</div>
+<form method="post" action="{{ url_for('cart_add', pid=p.id) }}" class="qty"><input type="number" name="qty" value="1" min="1" max="20"><button>Add to cart</button></form>
+<ul class="ticks"><li>Free delivery on all orders</li><li>Secure checkout</li><li>7 day easy returns</li></ul></div></div>{% endblock %}

@@ -1,0 +1,13 @@
+{% extends "base.html" %}{% block content %}
+{% if not search and not cat %}<section class="hero"><h1>Quality products, delivered fast.</h1><p>Shop electronics, fashion and home essentials from one place.</p>
+<a class="btn" href="#products">Shop now</a><div class="perks"><span>Free delivery</span><span>Secure checkout</span><span>Easy returns</span></div></section>{% endif %}
+<div class="toolbar" id="products"><div class="chips"><a class="chip {{ 'on' if not cat }}" href="{{ url_for('index', q=search, sort=sort) }}">All</a>
+{% for c in cats %}<a class="chip {{ 'on' if c == cat }}" href="{{ url_for('index', cat=c, q=search, sort=sort) }}">{{ c }}</a>{% endfor %}</div>
+<form method="get"><input type="hidden" name="q" value="{{ search }}"><input type="hidden" name="cat" value="{{ cat }}">
+<select name="sort" onchange="this.form.submit()"><option value="new" {{ 'selected' if sort=='new' }}>Newest</option><option value="low" {{ 'selected' if sort=='low' }}>Price: low to high</option>
+<option value="high" {{ 'selected' if sort=='high' }}>Price: high to low</option><option value="name" {{ 'selected' if sort=='name' }}>Name A to Z</option></select></form></div>
+{% if search %}<p class="muted">{{ products|length }} result(s) for "{{ search }}"</p>{% endif %}
+<div class="grid">{% for p in products %}<div class="card pcard"><a href="{{ url_for('product', pid=p.id) }}"><div class="pimg"><img src="{{ image_url(p.image_key) }}" alt="{{ p.name }}" loading="lazy"></div></a>
+<div class="pbody"><div class="cat">{{ p.category }}</div><a href="{{ url_for('product', pid=p.id) }}"><h3>{{ p.name }}</h3></a>
+<div class="row"><span class="price">{{ p.price|money }}</span><form method="post" action="{{ url_for('cart_add', pid=p.id) }}"><button class="btn-sm">Add to cart</button></form></div></div></div>
+{% else %}<div class="empty card" style="grid-column:1/-1"><h2>No products found</h2><p class="muted">Try a different search or category.</p><a class="btn" href="{{ url_for('index') }}">View all</a></div>{% endfor %}</div>{% endblock %}
