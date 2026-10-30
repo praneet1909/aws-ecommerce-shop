@@ -20,3 +20,13 @@ See `AWS_SETUP_GUIDE_FINAL.md` for the step-by-step AWS setup.
 ## Structure
 - `app/`: Flask application
 - `deploy/user_data.sh`: EC2 startup script (replace the placeholders first)
+
+## Architecture
+[Architecture](docs/architecture.png)
+
+## Screenshots
+[Home page](docs/home.png)
+[Cart Page](docs/cart.png)
+[Mobile Interface Page](docs/mobileinterface.png)
+[Admin Page](docs/admin.png)
+[Product Page](docs/product.png)
