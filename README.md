@@ -27,6 +27,6 @@ See `AWS_SETUP_GUIDE_FINAL.md` for the step-by-step AWS setup.
 ## Screenshots
 [Home page](docs/home.png)
 [Cart Page](docs/cart.png)
-[Mobile Interface Page](docs/mobileinterface.png)
+[Mobile Interface Page](docs/mobile interface.png)
 [Admin Page](docs/admin.png)
 [Product Page](docs/product.png)
