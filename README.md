@@ -22,7 +22,7 @@ See `AWS_SETUP_GUIDE_FINAL.md` for the step-by-step AWS setup.
 - `deploy/user_data.sh`: EC2 startup script (replace the placeholders first)
 
 ## Architecture
-[Architecture](docs/architecture.png)
+[Architecture](docs/Architecture.png)
 
 ## Screenshots
 [Home page](docs/home.png)
